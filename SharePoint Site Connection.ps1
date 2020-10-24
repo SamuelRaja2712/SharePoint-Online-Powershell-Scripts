@@ -1,14 +1,15 @@
-﻿Import-Module 'C:\Program Files\SharePoint Online Management Shell\Microsoft.Online.SharePoint.PowerShell'
-Add-Type -Path "C:\Program Files\SharePoint Online Management Shell\Microsoft.Online.SharePoint.PowerShell\Microsoft.SharePoint.Client.dll"
-Add-Type -Path "C:\Program Files\SharePoint Online Management Shell\Microsoft.Online.SharePoint.PowerShell\Microsoft.SharePoint.Client.Runtime.dll"
-Add-Type -Path "C:\Program Files\SharePoint Online Management Shell\Microsoft.Online.SharePoint.PowerShell\Microsoft.Online.SharePoint.Client.Tenant.dll"
+﻿$scriptdirectory = "D:\Powershell Scripts\"
+Import-Module $($scriptdirectory + '\Reference\Microsoft.Online.SharePoint.PowerShell')
+Add-Type -Path $($scriptdirectory + '\Reference\Microsoft.Online.SharePoint.PowerShell\Microsoft.SharePoint.Client.dll')
+Add-Type -Path $($scriptdirectory + '\Reference\Microsoft.Online.SharePoint.PowerShell\Microsoft.SharePoint.Client.Runtime.dll')
+Add-Type -Path $($scriptdirectory + '\Reference\Microsoft.Online.SharePoint.PowerShell\Microsoft.Online.SharePoint.Client.Tenant.dll')
 #$Credentials = Get-Credential
-$credfile = Import-Csv "D:\Powershell Scripts\SharePoint\Credentials\credentials.csv"
+$credfile = Import-Csv $($scriptdirectory + "SharePoint\Credentials\credentials.csv")
 #get username and password from credentials csv
 $userName = $credfile[0].UserName
 $password = ConvertTo-SecureString $credfile[0].Password
 #list of sharepoint sites with template ID
-$templateCSV = Import-Csv "D:\Powershell Scripts\SharePoint\SiteTemplate.csv"
+$templateCSV = Import-Csv $($scriptdirectory + "SharePoint\SiteTemplate.csv")
 #SharePoint site where site creation request is created
 $SiteURL="https://jsrsp.sharepoint.com//sites/spsite"
 #creating SharePoint Online credentials
